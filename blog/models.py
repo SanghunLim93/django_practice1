@@ -1,5 +1,8 @@
 from django.db import models
 
+from do_it_django_prj import settings
+
+
 class Post(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
@@ -14,5 +17,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return f'/blog/{self.pk}/'
+
      
 # Create your models here.
