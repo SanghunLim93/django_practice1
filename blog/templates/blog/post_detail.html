@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
         <!-- Custom style for this template -->
         <link rel="stylesheet" href="{% static 'blog/css/blog-post.css' %}" media="screen">
+        <script src="https://kit.fontawesome.com/6aa878a7e0.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -59,8 +60,22 @@
                             <!-- Post content-->
                             <p>{{ post.content }}</p>
 
+                        {% if post.file_upload %}
+                            <a href="{{ Post.file_upload.url }}" class="btn btn-outline-dark" download="get_file_name">
+                                
+                            {% if post.get_file_ext == 'csv' %}
+                                <i class="fas fa-file-csv"></i>
+                            {% elif post.get_file_ext == 'xlsx' or post.getfile_ext == 'xls' %}
+                                <i class="fas fa-file-excel"></i>
+                            {% elif post.get_file_ext == 'doc' or post.getfile_ext == 'doc' %}
+                                <i class="fas fa-file-word"></i>
+                            {% else %}
+                                <i class="far fa-file"></i>
+                            {% endif %}
+                            {{ post.get_file_name }}
+                            </a>
+                        {% endif %}
                             <hr>
-                    </article>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
@@ -103,7 +118,9 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                 </div>
+            </div>
+        </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                     <!-- Search widget-->
@@ -116,6 +133,7 @@
                             </div>
                         </div>
                     </div>
+                <div/>
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categories</div>
