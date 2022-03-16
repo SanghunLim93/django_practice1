@@ -1,4 +1,7 @@
 # from django.shortcuts import render
+from django.shortcuts import render
+
+import blog
 from .models import Post
 from django.views.generic import ListView, DetailView
 
@@ -8,12 +11,20 @@ class PostList(ListView):
 
 class PostDetail(DetailView):
     model = Post
-# def index(request):
+
+def study_history(request):
+    return render(
+        request,
+        'blog/study_history.html'
+    )
+
+
+# def About(request):
 #     posts  = Post.objects.all().order_by('-pk')
 #
 #     return render(
 #         request,
-#         'blog/index.html',
+#         'blog/about.html',
 #         {
 #             'posts': posts,
 #         }
